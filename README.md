@@ -55,14 +55,6 @@ src/
 | Border radius | `1.5rem` (3xl) | same |
 | Shadows | `shadow-glass` | `shadow-glass-dark` |
 
-## Deploy
-
-Build and sync to the server:
-
-```bash
-npm run build
-rsync -avz --delete dist/ web2tema@78.47.11.201:/home/web2tema/web/colorpalette.temaprint.com/public_html/
-```
 
 ## Getting Started
 
