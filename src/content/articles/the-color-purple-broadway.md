@@ -2,6 +2,7 @@
 title: "The Color Purple on Broadway: A Journey of Empowerment and Resilience"
 slug: the-color-purple-broadway
 date: "2023-10-10"
+hexCode: "#6A0DAD"
 description: "The Color Purple, a powerful musical adaptation of Alice Walker's novel, explores themes of love, resilience, and self-discovery through its engaging narrative and soulful music."
 featured: true
 ---

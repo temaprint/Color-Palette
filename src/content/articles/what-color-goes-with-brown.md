@@ -2,6 +2,7 @@
 title: "What Color Goes with Brown: A Comprehensive Guide"
 slug: color-combinations-brown
 date: "2023-10-01"
+hexCode: "#6B4226"
 description: "Explore the versatile color brown and discover the best color combinations that complement it, enhancing your design and decor."
 featured: true
 ---

@@ -2,6 +2,7 @@
 title: "The Best Game Boy Color Games: A Nostalgic Journey"
 slug: best-gameboy-color-games
 date: "2023-10-01"
+hexCode: "#8B00FF"
 description: "Explore the unforgettable titles that defined the Game Boy Color era, bringing joy and adventure to millions of gamers around the world."
 featured: true
 ---

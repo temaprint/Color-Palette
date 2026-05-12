@@ -2,6 +2,7 @@
 title: "Understanding Split Complementary Color Scheme"
 slug: split-complementary-color-scheme
 date: "2023-10-01"
+hexCode: "#7B2D8E"
 description: "A detailed guide on split complementary color schemes, their principles, applications in design, and tips for effective use."
 featured: true
 ---

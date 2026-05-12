@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import { Palette, Search } from 'lucide-react';
+import { Palette } from 'lucide-react';
 import { getAllColors } from '../../lib/colors';
 import { getAllPalettes } from '../../lib/palettes';
 
@@ -9,64 +9,55 @@ const colors = await getAllColors();
 const palettes = await getAllPalettes();
 ---
 
-<Layout title="Palettes - Browse All">
+<Layout title="Color Palettes — ColorPalette">
   <Navbar />
-  <main class="container py-12">
+  <main class="container py-12 lg:py-16">
     <div class="max-w-7xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Color Palettes</h1>
-        <p class="text-xl text-gray-600 max-w-2xl">
-          Discover harmonious color combinations curated for various design needs. Each palette is carefully crafted to work beautifully together.
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">Color Palettes</h1>
+        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">
+          Discover harmonious color combinations curated for various design needs.
         </p>
       </header>
 
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {palettes.map(palette => {
           const paletteColors = palette.colors
-              .map(colorSlug => colors.find(c => c.slug === colorSlug))
-              .filter(Boolean);
+            .map(colorSlug => colors.find(c => c.slug === colorSlug))
+            .filter(Boolean);
 
           return (
-              <a
-                  href={`/palettes/${palette.id}`}
-                  class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
-              >
-                {/* Color Strip */}
-                <div class="relative">
-                  <div class="flex h-40">
-                    {paletteColors.map(color => color && (
-                        <div
-                            class="flex-1 transition-transform group-hover:scale-105 duration-500"
-                            style={{ backgroundColor: color.hexCode }}
-                        />
-                    ))}
-                  </div>
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <a
+              href={`/palettes/${palette.id}`}
+              class="group card"
+            >
+              <div class="relative">
+                <div class="flex h-44">
+                  {paletteColors.map(color => color && (
+                    <div
+                      class="flex-1 transition-transform group-hover:scale-105 duration-500 first:rounded-tl-3xl last:rounded-tr-3xl"
+                      style={{ backgroundColor: color.hexCode }}
+                    />
+                  ))}
                 </div>
-
-                {/* Content */}
-                <div class="p-6">
-                  <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center">
-                      <Palette className="h-6 w-6 text-primary-600 mr-3" />
-                      <h2 class="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">
-                        {palette.name}
-                      </h2>
-                    </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <div class="p-1.5 rounded-lg bg-primary-50 dark:bg-primary-950/50 mr-3">
+                    <Palette className="h-4 w-4 text-primary-600 dark:text-primary-400" />
                   </div>
-                  <p class="text-gray-600 mb-4">{palette.description}</p>
-
-                  {/* Tags */}
-                  <div class="flex flex-wrap gap-2">
-                    {palette.tags.map(tag => (
-                        <span class="tag">
-                      {tag}
-                    </span>
-                    ))}
-                  </div>
+                  <h2 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
+                    {palette.name}
+                  </h2>
                 </div>
-              </a>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">{palette.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {palette.tags.map(tag => (
+                    <span class="tag text-xs">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </a>
           );
         })}
       </div>

@@ -2,6 +2,7 @@
 title: "The Innovative World of Color Changing Light Bulbs"
 slug: color-changing-light-bulb
 date: "2023-10-01"
+hexCode: "#FF6B35"
 description: "Explore the versatility and benefits of color changing light bulbs, including their technology, applications, and impact on mood and ambiance."
 featured: true
 ---

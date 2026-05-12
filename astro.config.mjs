@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://colorpalette.wiki',
+  site: 'https://colorpalette.temaprint.com',
   integrations: [react(), tailwind(), sitemap()],
 });
 

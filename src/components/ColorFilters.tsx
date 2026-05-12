@@ -14,7 +14,6 @@ export default function ColorFilters({ tags }: ColorFiltersProps) {
         ? prev.filter(t => t !== tag)
         : [...prev, tag];
 
-      // Update visibility of color cards
       const colorCards = document.querySelectorAll('#colors-grid > a');
       colorCards.forEach(card => {
         const cardTags = JSON.parse((card as HTMLElement).dataset.tags || '[]');
@@ -27,20 +26,19 @@ export default function ColorFilters({ tags }: ColorFiltersProps) {
   };
 
   return (
-    <div className="mb-8">
-      <h2 className="text-lg font-semibold text-gray-700 mb-3">Filter by Tag</h2>
-      <div className="flex flex-wrap gap-2">
+    <div class="mb-10">
+      <div class="flex flex-wrap gap-2">
         {tags.map(tag => (
           <button
             key={tag}
             onClick={() => toggleFilter(tag)}
-            className={`inline-flex items-center px-3 py-1.5 rounded-full border text-sm transition-colors duration-200 ${
+            className={`inline-flex items-center px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
               activeFilters.includes(tag)
-                ? 'bg-primary-100 border-primary-200 text-primary-800'
-                : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300'
+                ? 'bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 ring-1 ring-primary-200 dark:ring-primary-800'
+                : 'bg-gray-100/80 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-gray-200/80 dark:hover:bg-white/10'
             }`}
           >
-            <TagIcon className="h-4 w-4 mr-1.5" />
+            <TagIcon className="h-3.5 w-3.5 mr-1.5" />
             {tag}
           </button>
         ))}

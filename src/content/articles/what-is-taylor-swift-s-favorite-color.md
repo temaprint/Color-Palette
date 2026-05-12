@@ -2,6 +2,7 @@
 title: "What is Taylor Swift's Favorite Color?"
 slug: taylor-swift-favorite-color
 date: "2023-01-01"
+hexCode: "#702963"
 description: "Unveiling the favorite color of pop icon Taylor Swift, exploring its significance and impact on her artistic persona."
 featured: true
 ---

@@ -2,6 +2,7 @@
 title: "How to Pick a Front Door Color"
 slug: pick-front-door-color
 date: "2023-01-01"
+hexCode: "#C8102E"
 description: "Choosing the right color for your front door can enhance your home's curb appeal, reflect your personality, and set the tone for your entire property. This guide explores factors to consider when selecting the perfect front door color."
 featured: true
 ---

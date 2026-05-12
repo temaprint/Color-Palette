@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
-import { Droplet, Tag } from 'lucide-react';
+import { Droplet } from 'lucide-react';
 import { getAllColors, getAllTags } from '../../lib/colors';
 import ColorFilters from '../../components/ColorFilters.tsx';
 
@@ -9,54 +9,52 @@ const colors = await getAllColors();
 const tags = await getAllTags();
 ---
 
-<Layout title="Colors - Browse All">
+<Layout title="Explore Colors — ColorPalette">
   <Navbar />
-  <main class="container py-12">
+  <main class="container py-12 lg:py-16">
     <div class="max-w-7xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Explore Colors</h1>
-        <p class="text-xl text-gray-600 max-w-2xl">
-          Browse our collection of carefully curated colors for your next project. Each color is selected for its versatility and aesthetic appeal.
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">Explore Colors</h1>
+        <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">
+          Browse our collection of carefully curated colors for your next project.
         </p>
       </header>
 
       <ColorFilters tags={tags} client:load />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="colors-grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="colors-grid">
         {colors.map(color => (
-            <a
-                href={`/colors/${color.slug}`}
-                class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
-                data-tags={JSON.stringify(color.tags)}
-            >
-              <div
-                  class="h-48 w-full transition-transform group-hover:scale-105 duration-500"
-                  style={{ backgroundColor: color.hexCode }}
-              />
-              <div class="p-5">
-                <div class="flex items-center justify-between mb-4">
-                  <div class="flex items-center">
-                    <Droplet
-                        className="h-5 w-5 mr-2"
-                        style={{ color: color.hexCode }}
-                    />
-                    <h2 class="text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">
-                      {color.name}
-                    </h2>
-                  </div>
-                  <code class="px-3 py-1 bg-gray-100 rounded-md text-sm font-mono text-gray-600">
-                    {color.hexCode}
-                  </code>
+          <a
+            href={`/colors/${color.slug}`}
+            class="group card"
+            data-tags={JSON.stringify(color.tags)}
+          >
+            <div
+              class="h-44 w-full transition-transform group-hover:scale-[1.03] duration-500"
+              style={{ backgroundColor: color.hexCode }}
+            />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center min-w-0">
+                  <Droplet
+                    className="h-4 w-4 mr-2 shrink-0"
+                    style={{ color: color.hexCode }}
+                  />
+                  <h2 class="text-base font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200 truncate">
+                    {color.name}
+                  </h2>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                  {color.tags.map(tag => (
-                      <span class="tag">
-                    {tag}
-                  </span>
-                  ))}
-                </div>
+                <code class="text-xs font-mono text-gray-500 dark:text-gray-400 bg-gray-100/80 dark:bg-white/5 px-2 py-1 rounded-lg shrink-0 ml-2">
+                  {color.hexCode}
+                </code>
               </div>
-            </a>
+              <div class="flex flex-wrap gap-1.5">
+                {color.tags.slice(0, 3).map(tag => (
+                  <span class="tag text-xs">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
         ))}
       </div>
     </div>

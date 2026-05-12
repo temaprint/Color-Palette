@@ -2,6 +2,7 @@
 title: "What Came First: The Color Orange or the Fruit?"
 slug: orange-color-fruit
 date: "2023-10-01"
+hexCode: "#FF8C00"
 description: "Exploring the fascinating history and etymology behind the color orange and the fruit, delving into cultural significance and linguistic evolution."
 featured: true
 ---

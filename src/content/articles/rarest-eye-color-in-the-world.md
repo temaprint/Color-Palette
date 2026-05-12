@@ -2,6 +2,7 @@
 title: "The Rarest Eye Color in the World: Green"
 slug: rarest-eye-color
 date: "2023-10-01"
+hexCode: "#3A7D44"
 description: "Explore the rarity and beauty of green eyes, the unique genetics behind them, and their cultural significance across the globe."
 featured: true
 ---

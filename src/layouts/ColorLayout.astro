@@ -9,7 +9,7 @@ interface Props {
   backText?: string;
 }
 
-const { 
+const {
   title,
   backLink = "/colors",
   backText = "Back to Colors"
@@ -18,14 +18,14 @@ const {
 
 <Layout title={title}>
   <Navbar />
-  <main class="container mx-auto px-4 py-8">
+  <main class="container py-8 lg:py-12">
     <div class="max-w-6xl mx-auto">
       {backLink && (
         <a
           href={backLink}
-          class="inline-flex items-center text-primary-600 hover:text-primary-500 mb-6"
+          class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 mb-8 font-medium text-sm"
         >
-          <ArrowLeft className="h-5 w-5 mr-2" />
+          <ArrowLeft className="h-4 w-4 mr-2" />
           {backText}
         </a>
       )}

@@ -2,6 +2,7 @@
 title: "Exploring the Colors of the Rainbow"
 slug: colors-of-the-rainbow
 date: "2023-10-01"
+hexCode: "#FF7F00"
 description: "An in-depth look at the seven colors of the rainbow, their significance, and their applications in art, design, and nature."
 featured: true
 ---

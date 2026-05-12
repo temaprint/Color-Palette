@@ -24,3 +24,6 @@ build/
 
 # Файлы настроек системы
 .env
+
+# Deploy scripts
+deploy.sh

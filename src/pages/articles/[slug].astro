@@ -15,31 +15,30 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 ---
 
-<Layout title={article.title}>
+<Layout title={`${article.title} — ColorPalette`}>
   <Navbar />
-  <main class="container py-12">
+  <main class="container py-12 lg:py-16">
     <div class="max-w-4xl mx-auto">
       <a
         href="/articles"
-        class="inline-flex items-center text-primary-600 hover:text-primary-500 mb-8"
+        class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 mb-8 font-medium text-sm"
       >
-        <ArrowLeft className="h-5 w-5 mr-2" />
+        <ArrowLeft className="h-4 w-4 mr-2" />
         Back to Articles
       </a>
 
-      <article class="bg-white rounded-2xl shadow-lg overflow-hidden">
-        {/* Color Header */}
+      <article class="card overflow-hidden">
         <div
-          class="h-48 w-full relative"
+          class="h-56 w-full relative"
           style={{ backgroundColor: article.hexCode }}
         >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         </div>
 
-        <div class="p-8">
-          <div class="flex items-center gap-4 text-gray-600 mb-6">
+        <div class="p-6 sm:p-10">
+          <div class="flex items-center gap-4 text-gray-400 dark:text-gray-500 text-sm mb-8">
             <div class="flex items-center">
-              <Calendar className="h-5 w-5 mr-2" />
+              <Calendar className="h-4 w-4 mr-2" />
               <time datetime={article.date}>
                 {new Date(article.date).toLocaleDateString('en-US', {
                   year: 'numeric',
@@ -49,12 +48,12 @@ const { article } = Astro.props;
               </time>
             </div>
             <div class="flex items-center">
-              <Droplet className="h-5 w-5 mr-2" style={{ color: article.hexCode }} />
+              <Droplet className="h-4 w-4 mr-2" style={{ color: article.hexCode }} />
               <code class="font-mono">{article.hexCode}</code>
             </div>
           </div>
 
-          <div class="prose prose-lg prose-primary max-w-none">
+          <div class="prose prose-lg prose-primary dark:prose-invert max-w-none">
             <Fragment set:html={article.content} />
           </div>
         </div>

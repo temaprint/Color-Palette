@@ -1,75 +1,82 @@
-# Color Palettes https://colorpalette.wiki
+# ColorPalette — [colorpalette.temaprint.com](https://colorpalette.temaprint.com)
 
-A modern, feature-rich color palette application built with Astro and React. Browse, explore, and discover beautiful color combinations for your next project.
+A color palette explorer built with Astro and React. Browse 200+ colors, curated palettes, and articles about color theory, trends, and design.
 
 ![Color Palettes Preview](public/colorpalette.png)
 
 ## Features
 
-- 🎨 **Curated Color Collection**: Handpicked colors with detailed information and usage examples
-- 🔍 **Smart Filtering**: Filter colors by tags and categories
-- 📚 **Color Articles**: In-depth articles about color theory and trends
-- 🎯 **Color Combinations**: Suggested color pairings for each color
-- 📱 **Responsive Design**: Beautiful experience across all devices
-- ⚡ **Fast Performance**: Built with Astro for optimal loading speeds
+- **200+ Colors** — handpicked with detailed info, hex/RGB values, and usage examples
+- **60+ Palettes** — auto-generated tag-based collections
+- **28 Articles** — color theory, trends (Pantone 2026), psychology, and design guides
+- **Smart Filtering** — filter colors by tags and categories
+- **Color Combinations** — suggested pairings and related colors for every shade
+- **Dark Mode** — toggle with sun/moon animation, persists in localStorage
+- **Glassmorphism UI** — backdrop-blur navbar and cards, extra-large border radius
+- **Animations** — staggered fade-in, slide-up, scale effects
+- **Responsive** — mobile-first, works on all screen sizes
+- **344 Static Pages** — pre-rendered for instant loading
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build) with [React](https://reactjs.org)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Framework**: [Astro 5](https://astro.build) + [React 18](https://reactjs.org)
+- **Styling**: [Tailwind CSS 3](https://tailwindcss.com) with custom design tokens
 - **Icons**: [Lucide React](https://lucide.dev)
-- **Content**: Markdown-based content management
-- **Typography**: [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin)
+- **Content**: Markdown-based with gray-matter frontmatter
+- **Typography**: [Inter](https://rsms.me/inter/) + [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin)
 
 ## Project Structure
 
 ```
 src/
-├── components/     # Reusable React components
-├── content/        # Markdown content for colors and articles
-│   ├── articles/   # Color-related articles
-│   └── colors/     # Individual color definitions
-├── layouts/        # Page layouts
-├── lib/           # Utility functions and data handling
-├── pages/         # Route pages
-└── styles/        # Global styles and Tailwind config
+├── components/       # React components (ColorFilters, ThemeToggle)
+├── content/
+│   ├── articles/     # 28 markdown articles
+│   └── colors/       # 200+ color markdown files
+├── layouts/          # Layout, ColorLayout, PaletteLayout
+├── lib/              # Data loaders (colors, palettes, articles)
+├── pages/
+│   ├── index.astro          # Homepage
+│   ├── colors/              # Color listing + detail pages
+│   ├── palettes/            # Palette listing + detail pages
+│   └── articles/            # Article listing + detail pages
+└── index.css         # Global styles (glassmorphism, dark mode, animations)
 ```
-![Color Palettes Preview](public/colorpalette-2.png)
-## Color Features
 
-Each color in the system includes:
-- Hex code and RGB values
-- Usage examples and combinations
-- Related color suggestions
-- Tagged categories
-- Visual preview with different opacities
-- Example text applications
+## Design System
+
+**2026 trends**: glassmorphism, bold typography, dark mode, calm UI, vibrant gradients.
+
+| Token | Light | Dark |
+|-------|-------|------|
+| Background | `#fafafa` | `#0a0a0f` |
+| Card | `#ffffff` (glass) | `#141420` (glass) |
+| Primary | `#4f46e5` (indigo) | same |
+| Border radius | `1.5rem` (3xl) | same |
+| Shadows | `shadow-glass` | `shadow-glass-dark` |
+
+## Deploy
+
+Build and sync to the server:
+
+```bash
+npm run build
+rsync -avz --delete dist/ web2tema@78.47.11.201:/home/web2tema/web/colorpalette.temaprint.com/public_html/
+```
 
 ## Getting Started
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/temaprint/colorpalette
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+```bash
+git clone https://github.com/temaprint/colorpalette
+cd colorpalette
+npm install
+npm run dev        # dev server at localhost:4321
+npm run build      # static build to dist/
+```
 
 ## Adding New Colors
 
-Create a new markdown file in `src/content/colors/` with the following structure:
+Create `src/content/colors/my-color.md`:
 
 ```markdown
 ---
@@ -81,24 +88,18 @@ tags: ["tag1", "tag2"]
 
 # Color Name
 
-Description of the color...
+Description...
 
 ## Psychology
-
 What the color represents...
 
 ## Usage
-
 Where to use this color...
-
-## Combinations
-
-Colors that pair well...
 ```
 
-## Adding Articles
+## Adding New Articles
 
-Create a new markdown file in `src/content/articles/` with:
+Create `src/content/articles/my-article.md`:
 
 ```markdown
 ---
@@ -107,26 +108,18 @@ slug: "article-slug"
 date: "YYYY-MM-DD"
 hexCode: "#HEXCODE"
 description: "Brief description"
-featured: true/false
+featured: true
 ---
 
-Article content...
+Article content in markdown...
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
 
 ## License
 
-MIT License - feel free to use this project for your own purposes.
+MIT
 
 ## Acknowledgments
 
 - Font: [Inter](https://rsms.me/inter/) by Rasmus Andersson
 - Icons: [Lucide](https://lucide.dev/)
-- Color Theory Resources: Various color psychology and design resources
+- Pantone Color of the Year references for educational purposes

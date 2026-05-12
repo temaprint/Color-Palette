@@ -2,7 +2,7 @@
 title: "Red and Green Make What Color? Understanding Color Mixing"
 slug: red-and-green-mixing
 date: "2023-10-01"
-hexCode: "#000000"
+hexCode: "#8B4513"
 description: "A comprehensive exploration of how red and green colors interact in both additive and subtractive color mixing, revealing their unique combinations and implications in various contexts."
 featured: true
 ---

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://colorpalette.wiki/sitemap-index.xml
+Sitemap: https://colorpalette.temaprint.com/sitemap-index.xml

@@ -1,37 +1,45 @@
 ---
 import { Palette, Droplet, BookOpen } from 'lucide-react';
+import ThemeToggle from './ThemeToggle.tsx';
 ---
 
-<nav class="bg-white shadow-lg">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center h-16">
-      <a href="/" class="flex items-center space-x-2">
-        <Palette className="h-8 w-8 text-primary-600" />
-        <span class="text-xl font-bold text-gray-900">ColorPalette.wiki</span>
+<nav class="glass sticky top-0 z-50 border-b border-gray-200/50 dark:border-white/5">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center h-16 sm:h-18">
+      <a href="/" class="flex items-center space-x-2.5 group">
+        <div class="p-1.5 rounded-xl bg-gradient-to-br from-primary-500 to-purple-600 shadow-glow dark:shadow-glow-dark transition-shadow duration-300">
+          <Palette className="h-5 w-5 text-white" />
+        </div>
+        <span class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">
+          ColorPalette
+        </span>
       </a>
-      
-      <div class="flex space-x-8">
+
+      <div class="flex items-center space-x-1 sm:space-x-2">
         <a
           href="/colors"
-          class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+          class="flex items-center px-3 py-2 rounded-xl text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/50 transition-all duration-200 text-sm font-medium"
         >
-          <Droplet className="h-5 w-5 mr-1" />
-          Colors
+          <Droplet className="h-4 w-4 mr-1.5" />
+          <span class="hidden sm:inline">Colors</span>
         </a>
         <a
           href="/palettes"
-          class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+          class="flex items-center px-3 py-2 rounded-xl text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/50 transition-all duration-200 text-sm font-medium"
         >
-          <Palette className="h-5 w-5 mr-1" />
-          Palettes
+          <Palette className="h-4 w-4 mr-1.5" />
+          <span class="hidden sm:inline">Palettes</span>
         </a>
         <a
           href="/articles"
-          class="flex items-center text-gray-600 hover:text-primary-600 transition-colors"
+          class="flex items-center px-3 py-2 rounded-xl text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/50 transition-all duration-200 text-sm font-medium"
         >
-          <BookOpen className="h-5 w-5 mr-1" />
-          Articles
+          <BookOpen className="h-4 w-4 mr-1.5" />
+          <span class="hidden sm:inline">Articles</span>
         </a>
+        <div class="ml-2 pl-2 border-l border-gray-200 dark:border-white/10">
+          <ThemeToggle client:load />
+        </div>
       </div>
     </div>
   </div>

@@ -1,138 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import { Palette, Droplet } from 'lucide-react';
+import { Palette, Droplet, Sparkles } from 'lucide-react';
 import { getAllColors } from '../lib/colors';
 import { getAllPalettes } from '../lib/palettes';
 
 const colors = await getAllColors();
 const palettes = await getAllPalettes();
 
-// Get first 3 palettes for showcase
 const featuredPalettes = palettes.slice(0, 3);
-// Get first 12 colors for the grid
-const displayColors = colors.slice(0, 12);
+const displayColors = colors.slice(0, 8);
 ---
 
-<Layout title="Color Palettes - Home">
+<Layout title="ColorPalette — Discover Beautiful Colors & Palettes">
   <Navbar />
-  <main class="container mx-auto px-4 py-12">
+  <main class="container mx-auto px-4 sm:px-6">
     <div class="max-w-7xl mx-auto">
-      {/* Hero Section */}
-      <div class="text-center mb-16">
-        <h1 class="text-5xl font-bold text-gray-900 mb-6">
-          Discover Beautiful Color Palettes
-        </h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Explore our collection of carefully curated colors and palettes for your next project
-        </p>
-      </div>
 
-      {/* Featured Palettes Section */}
-      <section class="mb-24">
-        <div class="flex items-center justify-between mb-8">
-          <h2 class="text-3xl font-bold text-gray-900">Featured Palettes</h2>
+      {/* Hero */}
+      <section class="pt-16 pb-20 lg:pt-24 lg:pb-28 text-center">
+        <div class="animate-fade-in">
+          <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-950/50 text-primary-600 dark:text-primary-400 text-sm font-medium mb-6">
+            <Sparkles className="h-4 w-4 mr-2" />
+            {colors.length} Colors &middot; {palettes.length} Palettes
+          </div>
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
+            <span class="text-gray-900 dark:text-white">Discover</span><br />
+            <span class="text-gradient">Beautiful Colors</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Explore our collection of carefully curated colors and palettes for your next project
+          </p>
+        </div>
+      </section>
+
+      {/* Featured Palettes — Bento Grid */}
+      <section class="section-gap">
+        <div class="flex items-center justify-between mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Featured Palettes</h2>
           <a
-              href="/palettes"
-              class="text-indigo-600 hover:text-indigo-500 font-medium flex items-center gap-2 text-lg transition-colors duration-200"
+            href="/palettes"
+            class="group flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
           >
-            View all palettes
-            <Palette className="h-5 w-5" />
+            View all
+            <Palette className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredPalettes.map(palette => {
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featuredPalettes.map((palette, i) => {
             const paletteColors = palette.colors
-                .map(colorSlug => colors.find(c => c.slug === colorSlug))
-                .filter(Boolean);
+              .map(colorSlug => colors.find(c => c.slug === colorSlug))
+              .filter(Boolean);
 
             return (
-                <a
-                    href={`/palettes/${palette.id}`}
-                    class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
-                >
-                  <div class="relative">
-                    <div class="flex h-40">
-                      {paletteColors.map(color => color && (
-                          <div
-                              class="flex-1 transition-transform group-hover:scale-105 duration-500"
-                              style={{ backgroundColor: color.hexCode }}
-                          />
-                      ))}
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <a
+                href={`/palettes/${palette.id}`}
+                class={`group card animate-slide-up stagger-${i + 1}`}
+                style={{ opacity: 0 }}
+              >
+                <div class="relative">
+                  <div class="flex h-44">
+                    {paletteColors.map(color => color && (
+                      <div
+                        class="flex-1 transition-transform group-hover:scale-105 duration-500 first:rounded-tl-3xl last:rounded-tr-3xl"
+                        style={{ backgroundColor: color.hexCode }}
+                      />
+                    ))}
                   </div>
-                  <div class="p-6">
-                    <div class="flex items-center mb-3">
-                      <Palette className="h-6 w-6 text-indigo-600 mr-3" />
-                      <h3 class="text-xl font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors duration-200">
-                        {palette.name}
-                      </h3>
-                    </div>
-                    <p class="text-gray-600 mb-4 line-clamp-2">{palette.description}</p>
-                    <div class="flex flex-wrap gap-2">
-                      {palette.tags.map(tag => (
-                          <span class="px-3 py-1 bg-gray-100 text-sm text-gray-600 rounded-full">
-                        {tag}
-                      </span>
-                      ))}
-                    </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200 mb-2">
+                    {palette.name}
+                  </h3>
+                  <p class="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-4">{palette.description}</p>
+                  <div class="flex flex-wrap gap-2">
+                    {palette.tags.map(tag => (
+                      <span class="tag text-xs">{tag}</span>
+                    ))}
                   </div>
-                </a>
+                </div>
+              </a>
             );
           })}
-          </div>
-          </section>
+        </div>
+      </section>
 
-          {/* Colors Section */}
-            <section>
-              <div class="flex items-center justify-between mb-8">
-                <h2 class="text-3xl font-bold text-gray-900">Featured Colors</h2>
-                <a
-                    href="/colors"
-                    class="text-indigo-600 hover:text-indigo-500 font-medium flex items-center gap-2 text-lg transition-colors duration-200"
-                >
-                  Browse all colors
-                  <Droplet className="h-5 w-5" />
-                </a>
+      {/* Colors Grid */}
+      <section class="pb-20">
+        <div class="flex items-center justify-between mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Trending Colors</h2>
+          <a
+            href="/colors"
+            class="group flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors duration-200"
+          >
+            Browse all
+            <Droplet className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+          {displayColors.map((color, i) => (
+            <a
+              href={`/colors/${color.slug}`}
+              class={`group card animate-slide-up stagger-${(i % 6) + 1}`}
+              style={{ opacity: 0 }}
+            >
+              <div
+                class="h-36 sm:h-44 w-full transition-transform group-hover:scale-[1.03] duration-500 first:rounded-t-3xl"
+                style={{ backgroundColor: color.hexCode }}
+              />
+              <div class="p-4 sm:p-5">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="text-sm sm:text-base font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200 truncate">
+                    {color.name}
+                  </h3>
+                </div>
+                <code class="text-xs font-mono text-gray-500 dark:text-gray-400 bg-gray-100/80 dark:bg-white/5 px-2 py-1 rounded-lg">
+                  {color.hexCode}
+                </code>
               </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {displayColors.map(color => (
-                    <a
-                        href={`/colors/${color.slug}`}
-                        class="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
-                    >
-                      <div
-                          class="h-40 w-full transition-transform group-hover:scale-105 duration-500"
-                          style={{ backgroundColor: color.hexCode }}
-                      />
-                      <div class="p-5">
-                        <div class="flex items-center justify-between mb-3">
-                          <div class="flex items-center">
-                            <Droplet
-                                className="h-5 w-5 mr-2"
-                                style={{ color: color.hexCode }}
-                            />
-                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors duration-200">
-                              {color.name}
-                            </h3>
-                          </div>
-                          <code class="px-3 py-1 bg-gray-100 rounded-md text-sm font-mono text-gray-600">
-                            {color.hexCode}
-                          </code>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                          {color.tags.map(tag => (
-                              <span class="px-3 py-1 bg-gray-100 text-sm text-gray-600 rounded-full">
-                      {tag}
-                    </span>
-                          ))}
-                        </div>
-                      </div>
-                    </a>
-                ))}
-              </div>
-            </section>
-            </div>
-            </main>
-            </Layout>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
